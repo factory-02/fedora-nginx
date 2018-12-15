@@ -69,7 +69,7 @@ Patch0:                         nginx-auto-cc-gcc.patch
 # Apply fix for bug in glibc libcrypt, if needed only.
 # That has been fixed some time in glibc-2.3.X and is
 # not needed with libxcrypt anyways.
-Patch1:                         0001-unix-ngx_user-Apply-fix-for-really-old-bug-in-glibc-.patch
+#Patch1:                         0001-unix-ngx_user-Apply-fix-for-really-old-bug-in-glibc-.patch
 
 # downstream patch - changing logs permissions to 664 instead
 # previous 644
@@ -245,7 +245,7 @@ Requires:                       nginx
 %prep
 %setup -q
 %patch0 -p0
-%patch1 -p1
+#%patch1 -p1
 %patch2 -p1
 cp %{SOURCE200} %{SOURCE210} %{SOURCE10} %{SOURCE12} .
 
