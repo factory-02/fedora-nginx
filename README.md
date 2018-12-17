@@ -16,6 +16,9 @@ SPEC-файл для создания RPM-пакета **nginx**.
 - [Поддержка](https://sysadmins.community/)
 - [Документация](https://sysadmins.wiki/)
 - [Исходный код](https://github.com/factory-02/fedora-nginx)
+- [Журнал изменений](CHANGELOG.md)
+- [Кодекс поведения](CODE_OF_CONDUCT.md)
+- [Правила участия в разработке](CONTRIBUTING.md)
 - [Сообщить о проблеме](https://github.com/factory-02/fedora-nginx/issues)
 
 ## Платформа
