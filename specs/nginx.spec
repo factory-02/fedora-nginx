@@ -27,7 +27,7 @@
 Name:                           nginx
 Epoch:                          1
 Version:                        1.15.7
-Release:                        2%{?dist}
+Release:                        3%{?dist}
 
 Summary:                        A high performance web server and reverse proxy server
 Group:                          System Environment/Daemons
@@ -564,6 +564,10 @@ fi
 %{_libdir}/nginx/modules/ngx_stream_module.so
 
 %changelog
+* Fri Dec 21 2018 Kitsune Solar <kitsune.solar@gmail.com> - 1:1.15.7-3
+- Add requires: SSCG.
+- Fix "nginx.conf".
+
 * Mon Dec 17 2018 Kitsune Solar <kitsune.solar@gmail.com> - 1:1.15.7-2
 - Fix some issues.
 
