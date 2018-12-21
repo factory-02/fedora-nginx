@@ -92,6 +92,11 @@ Requires:                       nginx-all-modules = %{epoch}:%{version}-%{releas
 
 Requires:                       openssl
 Requires:                       pcre
+
+# METASTORE - [
+Requires:                       sscg >= 2.2.0
+# ] - METASTORE
+
 Requires(pre):                  nginx-filesystem
 %if 0%{?with_mailcap_mimetypes}
 Requires:                       nginx-mimetypes
