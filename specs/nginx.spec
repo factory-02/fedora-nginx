@@ -27,7 +27,7 @@
 Name:                           nginx
 Epoch:                          1
 Version:                        1.15.8
-Release:                        1%{?dist}
+Release:                        2%{?dist}
 
 Summary:                        A high performance web server and reverse proxy server
 Group:                          System Environment/Daemons
@@ -564,6 +564,9 @@ fi
 %{_libdir}/nginx/modules/ngx_stream_module.so
 
 %changelog
+* Mon Dec 31 2018 Kitsune Solar <kitsune.solar@gmail.com> - 1:1.15.8-2
+- Update configurations from METADATA.
+
 * Thu Dec 27 2018 Kitsune Solar <kitsune.solar@gmail.com> - 1:1.15.8-1
 - New version: 1.15.8.
 
@@ -575,7 +578,7 @@ fi
 - Fix some issues.
 
 * Sat Dec 15 2018 Kitsune Solar <kitsune.solar@gmail.com> - 1:1.15.7-1
-- Update from METASTORE.
+- Update from METADATA.
 
 * Tue Dec 11 2018 Joe Orton <jorton@redhat.com> - 1:1.14.1-3
 - fix unexpanded paths in nginx(8)
