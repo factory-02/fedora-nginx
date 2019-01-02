@@ -27,7 +27,7 @@
 Name:                           nginx
 Epoch:                          1
 Version:                        1.15.8
-Release:                        3%{?dist}
+Release:                        4%{?dist}
 
 Summary:                        A high performance web server and reverse proxy server
 Group:                          System Environment/Daemons
@@ -418,11 +418,11 @@ echo 'load_module "%{_libdir}/nginx/modules/ngx_stream_module.so";' \
 mkdir -p $RPM_BUILD_ROOT%{_libexecdir}
 
 # Install nginx-ssl-pass-dialog.
-install -m 755 $RPM_SOURCE_DIR/nginx-ssl-pass-dialog \
+install -m 755 %{SOURCE921} \
     $RPM_BUILD_ROOT%{_libexecdir}/nginx-ssl-pass-dialog
 
 # Install nginx-ssl-gencerts.
-install -m 755 $RPM_SOURCE_DIR/nginx-ssl-gencerts \
+install -m 755 %{SOURCE922} \
     $RPM_BUILD_ROOT%{_libexecdir}/nginx-ssl-gencerts
 # ] - METASTORE
 
@@ -569,6 +569,9 @@ fi
 %{_libdir}/nginx/modules/ngx_stream_module.so
 
 %changelog
+* Wed Jan 02 2019 Kitsune Solar <kitsune.solar@gmail.com> - 1:1.15.8-4
+- Update SPEC-file.
+
 * Wed Jan 02 2019 Kitsune Solar <kitsune.solar@gmail.com> - 1:1.15.8-3
 - Update configurations from METADATA.
 

@@ -16,16 +16,16 @@ if test -f /etc/pki/tls/certs/nginx.localhost.crt -a \
 fi
 
 if test ! -f /etc/pki/tls/certs/nginx.localhost.crt -a \
-         -f /etc/pki/tls/private/nginx.localhost.key; then
+        -f /etc/pki/tls/private/nginx.localhost.key; then
     echo "Missing certificate, but key is present!"
     exit 1
 fi
 
 sscg -q                                                             \
-     --cert-file           /etc/pki/tls/certs/nginx.localhost.crt   \
-     --cert-key-file       /etc/pki/tls/private/nginx.localhost.key \
-     --ca-file             /etc/pki/tls/certs/nginx.localhost.crt   \
-     --lifetime            365                                      \
-     --hostname            $FQDN                                    \
-     --email               root@$FQDN
+    --cert-file           /etc/pki/tls/certs/nginx.localhost.crt    \
+    --cert-key-file       /etc/pki/tls/private/nginx.localhost.key  \
+    --ca-file             /etc/pki/tls/certs/nginx.localhost.crt    \
+    --lifetime            365                                       \
+    --hostname            $FQDN                                     \
+    --email               root@$FQDN
 
