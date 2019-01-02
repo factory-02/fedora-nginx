@@ -27,7 +27,7 @@
 Name:                           nginx
 Epoch:                          1
 Version:                        1.15.8
-Release:                        3%{?dist}
+Release:                        4%{?dist}
 
 Summary:                        A high performance web server and reverse proxy server
 Group:                          System Environment/Daemons
@@ -60,8 +60,6 @@ Source920:                      server.default.conf
 # SSL generator
 Source921:                      nginx-ssl-pass-dialog
 Source922:                      nginx-ssl-gencerts
-# Custom config
-Source923:                      nginx.custom.conf
 # ] - METASTORE
 
 # removes -Werror in upstream build scripts.  -Werror conflicts with
@@ -384,10 +382,6 @@ install -p -m 0644 %{SOURCE103} %{SOURCE104} \
 # Default vhost.
 install -p -m 0644 %{SOURCE920} \
     %{buildroot}%{_sysconfdir}/nginx/vhosts.d/00-server.default.conf
-
-# Custom config.
-install -p -m 0644 %{SOURCE923} \
-    %{buildroot}%{_sysconfdir}/nginx/conf.d/00-nginx.custom.conf
 # ] - METASTORE
 
 %if 0%{?with_mailcap_mimetypes}
@@ -525,8 +519,6 @@ fi
 # METASTORE - [
 # Default vhost.
 %config(noreplace) %{_sysconfdir}/nginx/vhosts.d/00-server.default.conf
-# Custom config.
-%config(noreplace) %{_sysconfdir}/nginx/conf.d/00-nginx.custom.conf
 # SSL generator.
 %{_libexecdir}/nginx-ssl-pass-dialog
 %{_libexecdir}/nginx-ssl-gencerts
@@ -577,6 +569,9 @@ fi
 %{_libdir}/nginx/modules/ngx_stream_module.so
 
 %changelog
+* Wed Jan 02 2019 Kitsune Solar <kitsune.solar@gmail.com> - 1:1.15.8-4
+- Update configurations from METADATA.
+
 * Wed Jan 02 2019 Kitsune Solar <kitsune.solar@gmail.com> - 1:1.15.8-3
 - Update configurations from METADATA.
 
