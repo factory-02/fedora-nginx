@@ -27,7 +27,7 @@
 Name:                           nginx
 Epoch:                          1
 Version:                        1.15.8
-Release:                        2%{?dist}
+Release:                        3%{?dist}
 
 Summary:                        A high performance web server and reverse proxy server
 Group:                          System Environment/Daemons
@@ -60,6 +60,8 @@ Source920:                      00-server.default.conf
 # SSL generator
 Source921:                      nginx-ssl-pass-dialog
 Source922:                      nginx-ssl-gencerts
+# Custom config
+Source923:                      00-nginx.custom.conf
 # ] - METASTORE
 
 # removes -Werror in upstream build scripts.  -Werror conflicts with
@@ -357,6 +359,7 @@ install -p -d -m 0755 %{buildroot}%{_sysconfdir}/nginx/conf.d
 install -p -d -m 0755 %{buildroot}%{_sysconfdir}/nginx/default.d
 
 # METASTORE - [
+# Create "vhosts.d" dir.
 install -p -d -m 0755 %{buildroot}%{_sysconfdir}/nginx/vhosts.d
 # ] - METASTORE
 
@@ -378,8 +381,13 @@ install -p -m 0644 %{SOURCE103} %{SOURCE104} \
     %{buildroot}%{_datadir}/nginx/html
 
 # METASTORE - [
+# Default vhost.
 install -p -m 0644 %{SOURCE920} \
     %{buildroot}%{_sysconfdir}/nginx/vhosts.d
+
+# Custom config.
+install -p -m 0644 %{SOURCE923} \
+    %{buildroot}%{_sysconfdir}/nginx/conf.d
 # ] - METASTORE
 
 %if 0%{?with_mailcap_mimetypes}
@@ -413,12 +421,13 @@ echo 'load_module "%{_libdir}/nginx/modules/ngx_stream_module.so";' \
     > %{buildroot}%{_datadir}/nginx/modules/mod-stream.conf
 
 # METASTORE - [
-# install nginx-ssl-pass-dialog
 mkdir -p $RPM_BUILD_ROOT%{_libexecdir}
+
+# Install nginx-ssl-pass-dialog.
 install -m 755 $RPM_SOURCE_DIR/nginx-ssl-pass-dialog \
     $RPM_BUILD_ROOT%{_libexecdir}/nginx-ssl-pass-dialog
 
-# install nginx-ssl-gencerts
+# Install nginx-ssl-gencerts.
 install -m 755 $RPM_SOURCE_DIR/nginx-ssl-gencerts \
     $RPM_BUILD_ROOT%{_libexecdir}/nginx-ssl-gencerts
 # ] - METASTORE
@@ -514,7 +523,11 @@ fi
 %dir %{_libdir}/nginx/modules
 
 # METASTORE - [
+# Default vhost.
 %config(noreplace) %{_sysconfdir}/nginx/vhosts.d/00-server.default.conf
+# Custom config.
+%config(noreplace) %{_sysconfdir}/nginx/conf.d/00-nginx.custom.conf
+# SSL generator.
 %{_libexecdir}/nginx-ssl-pass-dialog
 %{_libexecdir}/nginx-ssl-gencerts
 # ] - METASTORE
@@ -564,6 +577,9 @@ fi
 %{_libdir}/nginx/modules/ngx_stream_module.so
 
 %changelog
+* Wed Jan 02 2019 Kitsune Solar <kitsune.solar@gmail.com> - 1:1.15.8-3
+- Update configurations from METADATA.
+
 * Mon Dec 31 2018 Kitsune Solar <kitsune.solar@gmail.com> - 1:1.15.8-2
 - Update configurations from METADATA.
 
