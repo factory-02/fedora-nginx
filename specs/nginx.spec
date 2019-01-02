@@ -56,12 +56,12 @@ Source900:                      https://nginx.org/download/nginx-%{version}.tar.
 # Brotli
 Source910:                      %{brotli_dir}.tar.gz
 # Zero server config
-Source920:                      00-server.default.conf
+Source920:                      server.default.conf
 # SSL generator
 Source921:                      nginx-ssl-pass-dialog
 Source922:                      nginx-ssl-gencerts
 # Custom config
-Source923:                      00-nginx.custom.conf
+Source923:                      nginx.custom.conf
 # ] - METASTORE
 
 # removes -Werror in upstream build scripts.  -Werror conflicts with
@@ -383,11 +383,11 @@ install -p -m 0644 %{SOURCE103} %{SOURCE104} \
 # METASTORE - [
 # Default vhost.
 install -p -m 0644 %{SOURCE920} \
-    %{buildroot}%{_sysconfdir}/nginx/vhosts.d
+    %{buildroot}%{_sysconfdir}/nginx/vhosts.d/00-server.default.conf
 
 # Custom config.
 install -p -m 0644 %{SOURCE923} \
-    %{buildroot}%{_sysconfdir}/nginx/conf.d
+    %{buildroot}%{_sysconfdir}/nginx/conf.d/00-nginx.custom.conf
 # ] - METASTORE
 
 %if 0%{?with_mailcap_mimetypes}
