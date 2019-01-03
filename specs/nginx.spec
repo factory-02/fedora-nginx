@@ -28,7 +28,6 @@ Name:                           nginx
 Epoch:                          1
 Version:                        1.15.8
 Release:                        4%{?dist}
-
 Summary:                        A high performance web server and reverse proxy server
 Group:                          System Environment/Daemons
 # BSD License (two clause)
