@@ -59,6 +59,7 @@ Source920:                      server.default.conf
 # SSL generator
 Source921:                      nginx-ssl-pass-dialog
 Source922:                      nginx-ssl-gencerts
+Source923:                      nginx-ssl-gencerts-dhparam
 # ] - METASTORE
 
 # removes -Werror in upstream build scripts.  -Werror conflicts with
@@ -423,6 +424,10 @@ install -m 755 %{SOURCE921} \
 # Install nginx-ssl-gencerts.
 install -m 755 %{SOURCE922} \
     $RPM_BUILD_ROOT%{_libexecdir}/nginx-ssl-gencerts
+
+# Install nginx-ssl-gencerts-dhparam.
+install -m 755 %{SOURCE923} \
+    $RPM_BUILD_ROOT%{_libexecdir}/nginx-ssl-gencerts-dhparam
 # ] - METASTORE
 
 %pre filesystem
@@ -521,6 +526,7 @@ fi
 # SSL generator.
 %{_libexecdir}/nginx-ssl-pass-dialog
 %{_libexecdir}/nginx-ssl-gencerts
+%{_libexecdir}/nginx-ssl-gencerts-dhparam
 # ] - METASTORE
 
 %files all-modules
