@@ -522,7 +522,7 @@ fi
 
 # METASTORE - [
 # Default vhost.
-%config(noreplace) %{_sysconfdir}/nginx/vhosts.d/00-server.default.conf
+%config %{_sysconfdir}/nginx/vhosts.d/00-server.default.conf
 # SSL generator.
 %{_libexecdir}/nginx-ssl-pass-dialog
 %{_libexecdir}/nginx-ssl-gencerts
