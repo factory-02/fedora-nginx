@@ -1,10 +1,11 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 set -e
 
 FQDN="$( hostname )"
 PATH="/etc/pki/tls"
 FILE="nginx.localhost"
+SSCG="$( which sscg )"
 
 if test -f ${PATH}/certs/${FILE}.crt -a \
         -f ${PATH}/private/${FILE}.key; then
@@ -23,7 +24,7 @@ if test ! -f ${PATH}/certs/${FILE}.crt -a \
     exit 1
 fi
 
-sscg -q                                                     \
+${SSCG} -q                                                  \
     --cert-file                 ${PATH}/certs/${FILE}.crt   \
     --cert-key-file             ${PATH}/private/${FILE}.key \
     --ca-file                   ${PATH}/certs/${FILE}.crt   \
