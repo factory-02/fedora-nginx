@@ -27,9 +27,8 @@
 Name:                           nginx
 Epoch:                          1
 Version:                        1.15.8
-Release:                        6%{?dist}
+Release:                        7%{?dist}
 Summary:                        A high performance web server and reverse proxy server
-Group:                          System Environment/Daemons
 # BSD License (two clause)
 # http://www.freebsd.org/copyright/freebsd-license.html
 License:                        BSD
@@ -118,7 +117,6 @@ memory usage.
 # -------------------------------------------------------------------------------------------------------------------- #
 
 %package all-modules
-Group:                          System Environment/Daemons
 Summary:                        A meta package that installs all available Nginx modules
 BuildArch:                      noarch
 
@@ -147,7 +145,6 @@ Fedora 24, modules are optional.
 # -------------------------------------------------------------------------------------------------------------------- #
 
 %package filesystem
-Group:                          System Environment/Daemons
 Summary:                        The basic directory layout for the Nginx server
 BuildArch:                      noarch
 Requires(pre):                  shadow-utils
@@ -163,7 +160,6 @@ directories.
 # -------------------------------------------------------------------------------------------------------------------- #
 
 %package mod-http-geoip
-Group:                          System Environment/Daemons
 Summary:                        Nginx HTTP geoip module
 BuildRequires:                  GeoIP-devel
 Requires:                       nginx
@@ -178,7 +174,6 @@ Requires:                       GeoIP
 # -------------------------------------------------------------------------------------------------------------------- #
 
 %package mod-http-image-filter
-Group:                          System Environment/Daemons
 Summary:                        Nginx HTTP image filter module
 BuildRequires:                  gd-devel
 Requires:                       nginx
@@ -192,7 +187,6 @@ Requires:                       gd
 # -------------------------------------------------------------------------------------------------------------------- #
 
 %package mod-http-perl
-Group:                          System Environment/Daemons
 Summary:                        Nginx HTTP perl module
 BuildRequires:                  perl-devel
 %if 0%{?fedora} >= 24
@@ -211,7 +205,6 @@ Requires:                       perl(constant)
 # -------------------------------------------------------------------------------------------------------------------- #
 
 %package mod-http-xslt-filter
-Group:                          System Environment/Daemons
 Summary:                        Nginx XSLT module
 BuildRequires:                  libxslt-devel
 Requires:                       nginx
@@ -224,7 +217,6 @@ Requires:                       nginx
 # -------------------------------------------------------------------------------------------------------------------- #
 
 %package mod-mail
-Group:                          System Environment/Daemons
 Summary:                        Nginx mail modules
 Requires:                       nginx
 
@@ -236,7 +228,6 @@ Requires:                       nginx
 # -------------------------------------------------------------------------------------------------------------------- #
 
 %package mod-stream
-Group:                          System Environment/Daemons
 Summary:                        Nginx stream modules
 Requires:                       nginx
 
@@ -574,6 +565,9 @@ fi
 %{_libdir}/nginx/modules/ngx_stream_module.so
 
 %changelog
+* Sat Feb 09 2019 Kitsune Solar <kitsune.solar@gmail.com> - 1:1.15.8-7
+- Update SPEC-file.
+
 * Sat Feb 09 2019 Kitsune Solar <kitsune.solar@gmail.com> - 1:1.15.8-6
 - Reconfigure SSL generator.
 
