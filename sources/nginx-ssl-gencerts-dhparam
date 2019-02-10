@@ -4,29 +4,8 @@ set -e
 
 FQDN=`hostname`
 
-if test -f /etc/pki/tls/certs/nginx.localhost.dhparam.crt -a \
-        -f /etc/pki/tls/private/nginx.localhost.dhparam.key; then
+if test -f /etc/pki/tls/certs/nginx.localhost.dhparam.pem -a; then
     exit 0
 fi
 
-if test -f /etc/pki/tls/certs/nginx.localhost.dhparam.crt -a \
-        ! -f /etc/pki/tls/private/nginx.localhost.dhparam.key; then
-    echo "Missing certificate key!"
-    exit 1
-fi
-
-if test ! -f /etc/pki/tls/certs/nginx.localhost.dhparam.crt -a \
-        -f /etc/pki/tls/private/nginx.localhost.dhparam.key; then
-    echo "Missing certificate, but key is present!"
-    exit 1
-fi
-
-sscg -q                                                                             \
-    --cert-file                 /etc/pki/tls/certs/nginx.localhost.dhparam.crt      \
-    --cert-key-file             /etc/pki/tls/private/nginx.localhost.dhparam.key    \
-    --ca-file                   /etc/pki/tls/certs/nginx.localhost.dhparam.crt      \
-    --lifetime                  3650                                                \
-    --key-strength              2048                                                \
-    --hostname                  ${FQDN}                                             \
-    --email                     root@${FQDN}
-
+openssl dhparam -out /etc/pki/tls/certs/nginx.localhost.dhparam.pem 2048
