@@ -2,34 +2,31 @@
 
 set -e
 
-FQDN="$( hostname )"
-PATH="/etc/pki/tls"
-FILE="nginx.localhost.dhparam"
-SSCG="$( which sscg )"
+FQDN=`hostname`
 
-if test -f ${PATH}/certs/${FILE}.crt -a \
-        -f ${PATH}/private/${FILE}.key; then
+if test -f /etc/pki/tls/certs/nginx.localhost.dhparam.crt -a \
+        -f /etc/pki/tls/private/nginx.localhost.dhparam.key; then
     exit 0
 fi
 
-if test -f ${PATH}/certs/${FILE}.crt -a \
-        ! -f ${PATH}/private/${FILE}.key; then
+if test -f /etc/pki/tls/certs/nginx.localhost.dhparam.crt -a \
+        ! -f /etc/pki/tls/private/nginx.localhost.dhparam.key; then
     echo "Missing certificate key!"
     exit 1
 fi
 
-if test ! -f ${PATH}/certs/${FILE}.crt -a \
-        -f ${PATH}/private/${FILE}.key; then
+if test ! -f /etc/pki/tls/certs/nginx.localhost.dhparam.crt -a \
+        -f /etc/pki/tls/private/nginx.localhost.dhparam.key; then
     echo "Missing certificate, but key is present!"
     exit 1
 fi
 
-${SSCG} -q                                                  \
-    --cert-file                 ${PATH}/certs/${FILE}.crt   \
-    --cert-key-file             ${PATH}/private/${FILE}.key \
-    --ca-file                   ${PATH}/certs/${FILE}.crt   \
-    --lifetime                  3650                        \
-    --key-strength              2048                        \
-    --hostname                  ${FQDN}                     \
+sscg -q                                                                             \
+    --cert-file                 /etc/pki/tls/certs/nginx.localhost.dhparam.crt      \
+    --cert-key-file             /etc/pki/tls/private/nginx.localhost.dhparam.key    \
+    --ca-file                   /etc/pki/tls/certs/nginx.localhost.dhparam.crt      \
+    --lifetime                  3650                                                \
+    --key-strength              2048                                                \
+    --hostname                  ${FQDN}                                             \
     --email                     root@${FQDN}
 
