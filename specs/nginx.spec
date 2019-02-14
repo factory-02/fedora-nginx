@@ -27,7 +27,7 @@
 Name:                           nginx
 Epoch:                          1
 Version:                        1.15.8
-Release:                        12%{?dist}
+Release:                        13%{?dist}
 Summary:                        A high performance web server and reverse proxy server
 # BSD License (two clause)
 # http://www.freebsd.org/copyright/freebsd-license.html
@@ -565,6 +565,9 @@ fi
 %{_libdir}/nginx/modules/ngx_stream_module.so
 
 %changelog
+* Thu Feb 14 2019 Kitsune Solar <kitsune.solar@gmail.com> - 1:1.15.8-13
+- Reconfigure SSL generator.
+
 * Tue Feb 12 2019 Kitsune Solar <kitsune.solar@gmail.com> - 1:1.15.8-12
 - Update "server.default.conf".
 
